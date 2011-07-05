@@ -92,7 +92,7 @@ the config file. See option 'BusinessHours'.
 =cut
 
 sub BusinessHours {
-    my $bizhours = new Business::Hours;
+    my $bizhours = Business::Hours->new;
     if ( RT->Config->Get('BusinessHours') ) {
         $bizhours->business_hours( %{ RT->Config->Get('BusinessHours') } );
     }

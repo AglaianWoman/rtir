@@ -87,7 +87,7 @@ sub Commit {
                 . join(" AND ", map "Status != '$_'", RT->Config->Get('InactiveStatus') )
                 .")";
 
-    my $members = new RT::Tickets( $self->TransactionObj->CurrentUser );
+    my $members = RT::Tickets->new( $self->TransactionObj->CurrentUser );
     $members->FromSQL( $query );
     while ( my $member = $members->Next ) {
         if ( RT::IR::Ticket::IsLinkedToActiveIncidents( $member, $self->TicketObj ) ) {

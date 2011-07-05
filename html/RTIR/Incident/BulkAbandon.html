@@ -115,7 +115,7 @@ if ( $ARGS{'BulkAbandon'} ) {
             # XXX: why do we limit to open?
             my $query = "CF.{State} = 'open' AND MemberOf = $id";
             $query .= " AND (". join(' OR ', map "Queue = '$_'", @ReplyToAll) .")";
-            my $members = new RT::Tickets( $t->CurrentUser );
+            my $members = RT::Tickets->new( $t->CurrentUser );
             $members->FromSQL( $query );
             while( my $member = $members->Next ) {
                 $ARGS{'UpdateAttachments'} = delete $session{'Attachments'} if $session{'Attachments'};
@@ -130,7 +130,7 @@ if ( $ARGS{'BulkAbandon'} ) {
                 ." AND ( ". join(" OR ", map "Status = '$_'", RT->Config->Get('ActiveStatus') ) ." )"
                 ." AND ( Queue = 'Incident Reports' OR Queue = 'Blocks' OR Queue = 'Investigations' )";
             
-            my $members = new RT::Tickets( $t->CurrentUser );
+            my $members = RT::Tickets->new( $t->CurrentUser );
             $members->FromSQL( $query );
             while( my $member = $members->Next ) {
                 next if RT::IR::Ticket::IsLinkedToActiveIncidents( $member, $t );

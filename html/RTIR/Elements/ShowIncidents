@@ -55,7 +55,7 @@
 my $count = 0;
 
 my $query = "Queue = 'Incidents' AND HasMember = " . $Ticket->Id . " AND CF.{State} != 'rejected'";
-my $incidents = new RT::Tickets($session{'CurrentUser'});
+my $incidents = RT::Tickets->new($session{'CurrentUser'});
 $incidents->FromSQL($query);
 
 my $action = '';
@@ -77,7 +77,7 @@ if ( $Ticket->Owner != $session{'CurrentUser'}->Id ) {
 my $show_unlink = !$action;
 if ( $show_unlink && $Ticket->QueueObj->Name eq 'Blocks' ) {
     my $query = "Queue = 'Incidents' AND HasMember = " . $Ticket->Id;
-    my $incidents = new RT::Tickets( $session{'CurrentUser'} );
+    my $incidents = RT::Tickets->new( $session{'CurrentUser'} );
     $incidents->FromSQL( $query );
     $show_unlink = 0 unless $incidents->Count > 1;
 }

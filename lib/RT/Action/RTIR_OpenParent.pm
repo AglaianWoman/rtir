@@ -83,7 +83,7 @@ sub Commit {
                    ." AND HasMember = " . $self->TicketObj->Id
                    ." AND (Status = 'rejected' OR Status = 'resolved')";
 
-        my $parents = new RT::Tickets($self->TransactionObj->CurrentUser);
+        my $parents = RT::Tickets->new($self->TransactionObj->CurrentUser);
         $parents->FromSQL($query);
         while (my $member = $parents->Next) {
             my ($res, $msg) = $member->Open;

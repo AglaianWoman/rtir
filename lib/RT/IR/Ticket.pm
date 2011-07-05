@@ -45,7 +45,7 @@ sub IsLinkedToActiveIncidents {
 
     $query   .= " AND id != ". $parent->Id if $parent;
 
-    my $tickets = new RT::Tickets( $child->CurrentUser );
+    my $tickets = RT::Tickets->new( $child->CurrentUser );
     $tickets->FromSQL( $query );
     return $tickets->Count;
 }

@@ -8,7 +8,7 @@ use base 'RT::Action::Generic';
 
 sub CreatorCurrentUser {
     my $self = shift;
-    my $user = new RT::CurrentUser($self->TransactionObj->CurrentUser);
+    my $user = RT::CurrentUser->new($self->TransactionObj->CurrentUser);
     $user->Load($self->TransactionObj->Creator);
     return $user;
 }

@@ -55,7 +55,7 @@ if ( $ARGS{'q'} ) {
 
     # Incidents don't have requestors, but children do
     if ( $query =~ m/\@/ ) {
-        my $children = new RT::Tickets($session{'CurrentUser'});
+        my $children = RT::Tickets->new($session{'CurrentUser'});
         $children->FromSQL( "( Queue = 'Incident Reports' OR
                                Queue = 'Investigations' OR
                                Queue = 'Blocks'
