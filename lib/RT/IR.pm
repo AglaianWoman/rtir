@@ -492,7 +492,7 @@ if ( RT::IR->HasConstituency ) {
     require RT::Record;
     # flush constituency cache on update of the custom field value for a ticket
     wrap 'RT::Record::_AddCustomFieldValue', pre => sub {
-        return unless UNIVERSAL::isa($_[0] => 'RT::Ticket');
+        return unless Scalar::Util::blessed($_[0]) and $_[0]->isa('RT::Ticket');
         $RT::IR::ConstituencyCache{$_[0]->id}  = undef;
     };
 
@@ -509,7 +509,7 @@ if ( RT::IR->HasConstituency ) {
             $_[-1] =  [$queue];
             return;
         }
-        if ( UNIVERSAL::isa( $self, 'RT::Ticket' ) ) {
+        if ( $self->isa('RT::Ticket') ) {
             my $const = $RT::IR::ConstituencyCache{ $self->id };
             if (!$const || $const eq '_none' ) {
                 my $systicket = RT::Ticket->new($RT::SystemUser);
