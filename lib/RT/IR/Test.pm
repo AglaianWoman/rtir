@@ -6,7 +6,6 @@ use lib qw(/opt/rt3/local/lib /opt/rt3/lib);
 
 package RT::IR::Test;
 
-our @ISA;
 BEGIN {
     local $@;
     eval { require RT::Test; 1 } or do {
@@ -16,8 +15,8 @@ BEGIN {
             ."You may need to set PERL5LIB=/path/to/rt/lib"
         );
     };
-    push @ISA, 'RT::Test';
 }
+use base qw(RT::Test);
 
 use RT::IR::Test::Web;
 
