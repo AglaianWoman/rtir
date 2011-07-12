@@ -215,7 +215,6 @@ META.yml
 po/README
 po/rtir.pot
 README
-reports/report.pl
 t/000-mason-syntax.t
 t/001-basic-RTIR.t
 t/002-test-reject.t
