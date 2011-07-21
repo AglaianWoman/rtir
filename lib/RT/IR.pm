@@ -335,8 +335,9 @@ sub ParseIPRange {
         $sIP = $eIP = sprintf "%03d.%03d.%03d.%03d", split /\./, $1;
     }
     elsif ( $arg =~ /^\s*($RE{net}{IPv4})-($RE{net}{IPv4})\s*$/o ) {
-        $sIP = sprintf "%03d.%03d.%03d.%03d", split /\./, $1;
-        $eIP = sprintf "%03d.%03d.%03d.%03d", split /\./, $2;
+        my ($start, $end) = ($1, $2);
+        $sIP = sprintf "%03d.%03d.%03d.%03d", split /\./, $start;
+        $eIP = sprintf "%03d.%03d.%03d.%03d", split /\./, $end;
     }
     else {
         return ();
@@ -460,9 +461,10 @@ wrap 'RT::ObjectCustomFieldValue::Content',
         $$val = sprintf "%d.%d.%d.%d", split /\./, $1;
 
         my $large_content = $obj->__Value('LargeContent');
-        return if !$large_content
-            || $large_content !~ /^\s*($re_ip_serialized)\s*$/o;
-        my $eIP = sprintf "%d.%d.%d.%d", split /\./, $1;
+        return unless $large_content;
+        return unless $large_content =~ /^\s*($re_ip_serialized)\s*$/o;
+        my $eIP = $1;
+        $eIP = sprintf "%d.%d.%d.%d", split /\./, $eIP;
         $$val .= '-'. $eIP unless $$val eq $eIP;
         return;
     };
