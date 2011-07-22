@@ -38,7 +38,7 @@ sub goto_create_rtir_ticket {
     
 
     # set the form
-    $self->form_number(3);
+    return $self->form_number(3);
 }
 
 sub create_rtir_ticket_ok {
@@ -179,7 +179,7 @@ sub display_ticket {
     my $self = shift;
     my $id = shift;
 
-    $self->get_ok("/RTIR/Display.html?id=$id", "Loaded Display page for Ticket #$id");
+    return $self->get_ok("/RTIR/Display.html?id=$id", "Loaded Display page for Ticket #$id");
 }
 
 sub ticket_state {
@@ -239,7 +239,7 @@ sub ok_and_content_like {
     
     Test::More::is($self->status, 200, "request successful");
     #like($self->content, $re, $desc);
-    $self->content_like($re, $desc);
+    return $self->content_like($re, $desc);
 }
 
 
@@ -315,7 +315,7 @@ sub merge_ticket {
     
     Test::More::is ($self->status, 200, "Attempting to merge $type #$id to ticket #$id_to_merge_to");
     
-    $self->content_like(qr{.*<ul class="action-results">\s*<li>Merge Successful</li>.*}i, 
+    return $self->content_like(qr{.*<ul class="action-results">\s*<li>Merge Successful</li>.*}i, 
         "Successfully merged $type #$id to ticket #$id_to_merge_to");
 }
 
@@ -375,7 +375,7 @@ sub has_watchers {
 
     $self->display_ticket($id);
 
-    $self->content_like(
+    return $self->content_like(
 qr{<td class="labeltop">Correspondents:</td>\s*<td class="value">\s*([@\w\.]+)\s*<br />}ms,
         "Found $type",
     );
@@ -387,7 +387,7 @@ sub goto_edit_block {
 
     $self->display_ticket($id);
 
-    $self->follow_link_ok( { text => 'Edit', n => '1' },
+    return $self->follow_link_ok( { text => 'Edit', n => '1' },
         "Followed 'Edit' (block) link" );
 }
 
@@ -404,7 +404,7 @@ sub resolve_rtir_ticket {
 
     Test::More::is( $self->status, 200, "Attempting to resolve $type #$id" );
 
-    $self->content_like(
+    return $self->content_like(
         qr/.*State changed from \w+ to resolved.*/,
         "Successfully resolved $type #$id"
     );
@@ -458,6 +458,7 @@ sub bulk_abandon {
         $self->form_number(3);
         Test::More::ok( $self->value('BulkAbandon'), "Still on Bulk Abandon page" );
     }
+    return;
 }
 
 1;
