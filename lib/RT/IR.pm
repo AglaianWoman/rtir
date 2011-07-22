@@ -577,8 +577,8 @@ if ( RT::IR->HasConstituency ) {
     require RT::Queue;
     package RT::Queue;
 
-    sub CorrespondAddress { GetQueueAttribute(shift, 'CorrespondAddress') }
-    sub CommentAddress { GetQueueAttribute(shift, 'CommentAddress') }
+    sub CorrespondAddress { return GetQueueAttribute(shift, 'CorrespondAddress') }
+    sub CommentAddress { return GetQueueAttribute(shift, 'CommentAddress') }
 
     sub GetQueueAttribute {
         my $queue = shift;
