@@ -43,6 +43,7 @@ sub import {
     RT->Config->LoadConfig( File => 'RTIR_Config.pm' );
     RT->Config->Set( 'rtirname' => 'regression_tests' );
     require RT::IR;
+    return;
 }
 
 our $RTIR_TEST_USER = "rtir_test_user";
