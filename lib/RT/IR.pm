@@ -283,8 +283,9 @@ sub CustomFields {
     return wantarray? @list : $list[0];
 }
 
-sub _FlushCustomFieldsCache {
-    %cache = ()
+sub FlushCustomFieldsCache {
+    %cache = ();
+    return 1;
 } }
 
 { my $cache;
