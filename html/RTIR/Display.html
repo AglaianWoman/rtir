@@ -100,6 +100,11 @@
 
 </&></div>
 
+% if (RT->Config->Get( 'DeferTransactionLoading', $session{'CurrentUser'} )) {
+    <& /Ticket/Elements/ClickToShowHistory,
+        Ticket => $Ticket,
+    &>
+% } else {
 <& /Ticket/Elements/ShowHistory,
     Ticket         => $Ticket,
     Collapsed      => $ARGS{'Collapsed'}, 
@@ -110,6 +115,7 @@
     EncryptionPath => RT->Config->Get('WebPath') ."/RTIR/GnuPG.html",
     WarnUnsigned   => 1,
 &>
+% }
 <%INIT>
 my ($name);
 my $Ticket = new RT::Ticket( $session{'CurrentUser'} );
