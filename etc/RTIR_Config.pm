@@ -1,3 +1,5 @@
+use warnings;
+
 # WebNoAuthRegex - What portion of RT's URLspace should not require
 # authentication. Adjust it according to RTIR paths
 
