@@ -214,7 +214,7 @@ sub States {
     }
 
     my %seen = ();
-    @states = sort grep !$seen{$_}++, @states;
+    @states = sort grep { !$seen{$_}++ } @states;
     return @states;
 }
 
@@ -269,14 +269,14 @@ sub CustomFields {
     if ( $type ) {
         @list = (@{ $cache{'Global'} }, @{ $cache{$type} });
     } else {
-        @list = (@{ $cache{'Global'} }, map @$_, @cache{values %TYPE});
+        @list = (@{ $cache{'Global'} }, map { @$_ } @cache{values %TYPE});
     }
 
     if ( my $field = $arg{'Field'} ) {
         if ( $field =~ /\D/ ) {
-            @list = grep lc $_->Name eq lc $field, @list;
+            @list = grep { lc $_->Name eq lc $field } @list;
         } else {
-            @list = grep $_->id == $field, @list;
+            @list = grep { $_->id == $field } @list;
         }
     }
 
@@ -309,7 +309,7 @@ sub DefaultConstituency {
         push @values, substr $pqueue->__Value('Name'), length("$name - ");
     }
     my $default = RT->Config->Get('RTIR_CustomFieldsDefaults')->{'Constituency'} || '';
-    return $default if grep lc $_ eq lc $default, @values;
+    return $default if grep { lc $_ eq lc $default } @values;
     return shift @values;
 }
 
@@ -327,7 +327,7 @@ sub ParseIPRange {
     my $arg = shift or return ();
 
     if ( $arg =~ /^\s*$RE{net}{CIDR}{IPv4}{-keep}\s*$/go ) {
-        my $cidr = join( '.', map $_||0, (split /\./, $1)[0..3] ) ."/$2";
+        my $cidr = join( '.', map { $_||0 } (split /\./, $1)[0..3] ) ."/$2";
         $arg = (Net::CIDR::cidr2range( $cidr ))[0] || $arg;
     }
 
@@ -409,7 +409,7 @@ wrap 'RT::Tickets::_CustomFieldLimit',
     pre => sub {
         return unless $_[3] =~ /^\s*$RE{net}{CIDR}{IPv4}{-keep}\s*$/o;
         # convert incomplete 192.168/24 to 192.168.0.0/24 format
-        my $cidr = join( '.', map $_||0, (split /\./, $1)[0..3] ) ."/$2";
+        my $cidr = join( '.', map { $_||0 } (split /\./, $1)[0..3] ) ."/$2";
         # convert to range and continue, it will be catched by next wrapper
         $_[3] = (Net::CIDR::cidr2range( $cidr ))[0] || $_[3];
     };
@@ -645,7 +645,7 @@ if ( RT::IR->HasConstituency ) {
             if ( $tmp ) {
                 chomp $tmp;
                 $tmp = undef unless
-                    grep lc $_->Name eq lc $tmp, @{ $cf->Values->ItemsArrayRef };
+                    grep { lc $_->Name eq lc $tmp } @{ $cf->Values->ItemsArrayRef };
             }
             $value = $tmp;
             $RT::Logger->debug("Found Constituency '$tmp' in email") if $tmp;

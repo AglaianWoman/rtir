@@ -62,7 +62,7 @@ sub Prepare {
     my @inactive = $self->TicketObj->QueueObj->InactiveStatusArray;
     my $new_status = $self->TransactionObj->NewValue;
 
-    return 0 unless grep $_ eq $new_status, @inactive;
+    return 0 unless grep { $_ eq $new_status } @inactive;
     return 1;
 }
 
@@ -84,7 +84,7 @@ sub Commit {
                 .") AND MemberOf = " . $id
                 ." AND ("
                 # TODO: move to per queue statuses lists
-                . join(" AND ", map "Status != '$_'", RT->Config->Get('InactiveStatus') )
+                . join(" AND ", map { "Status != '$_'" } RT->Config->Get('InactiveStatus') )
                 .")";
 
     my $members = RT::Tickets->new( $self->TransactionObj->CurrentUser );

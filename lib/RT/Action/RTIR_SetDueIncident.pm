@@ -102,7 +102,7 @@ sub UpdateDue {
                 ." OR Queue = 'Blocks'"
                 .") AND MemberOf = " . $incident->Id
                 ." AND ("
-                . join( " OR ", map "Status = '$_'", RT->Config->Get('ActiveStatus') )
+                . join( " OR ", map { "Status = '$_'" } RT->Config->Get('ActiveStatus') )
                 .")";
     my $children = RT::Tickets->new($self->CurrentUser);
     $children->FromSQL( $query );

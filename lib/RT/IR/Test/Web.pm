@@ -165,8 +165,8 @@ sub custom_field_input {
     my $cf_id = $cf_obj->id;
     
     my ($res) =
-        grep /^Object-RT::Ticket-\d*-CustomField-$cf_id-Values?$/,
-        map $_->name,
+        grep { /^Object-RT::Ticket-\d*-CustomField-$cf_id-Values?$/ }
+        map { $_->name }
         $self->current_form->inputs;
     unless ( $res ) {
         Test::More::diag("Can not find input for custom field '$cf_name' #$cf_id");
@@ -369,7 +369,7 @@ sub bulk_abandon {
     my $self       = shift;
     my @to_abandon = @_;
 
-    Test::More::diag "going to bulk abandon incidents " . join ',', map "#$_",
+    Test::More::diag "going to bulk abandon incidents " . join ',', map { "#$_" }
       @to_abandon
       if $ENV{'TEST_VERBOSE'};
 

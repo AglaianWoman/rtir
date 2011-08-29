@@ -62,7 +62,7 @@ sub Commit {
 # but 0.0.0.0/0 is legal CIDR
     my @CIDRs = ( $content =~ /(?<![0-9.])$RE{net}{CIDR}{IPv4}{-keep}(?!\.?[0-9])/go );
     while ( my ($addr, $bits) = splice @CIDRs, 0, 2 ) {
-        my $cidr = join( '.', map $_||0, (split /\./, $addr)[0..3] ) ."/$bits";
+        my $cidr = join( '.', map { $_||0 } (split /\./, $addr)[0..3] ) ."/$bits";
         my $range = (Net::CIDR::cidr2range( $cidr ))[0] or next;
         $spots_left -= $self->AddIP(
             IP => $range, CustomField => $cf, Skip => \%existing
