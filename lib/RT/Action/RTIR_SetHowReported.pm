@@ -85,9 +85,6 @@ sub Commit {
 
 # }}}
 
-eval "require RT::Action::RTIR_SetHowReported_Vendor";
-die $@ if ($@ && $@ !~ qr{^Can't locate RT/Action/RTIR_SetHowReported_Vendor.pm});
-eval "require RT::Action::RTIR_SetHowReported_Local";
-die $@ if ($@ && $@ !~ qr{^Can't locate RT/Action/RTIR_SetHowReported_Local.pm});
+RT::IR->ImportOverlays;
 
 1;

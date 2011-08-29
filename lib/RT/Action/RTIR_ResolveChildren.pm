@@ -106,9 +106,6 @@ END
 
 # }}}
 
-eval "require RT::Action::RTIR_ResolveChildren_Vendor";
-die $@ if ($@ && $@ !~ qr{^Can't locate RT/Action/RTIR_ResolveChildren_Vendor.pm});
-eval "require RT::Action::RTIR_ResolveChildren_Local";
-die $@ if ($@ && $@ !~ qr{^Can't locate RT/Action/RTIR_ResolveChildren_Local.pm});
+RT::IR->ImportOverlays;
 
 1;

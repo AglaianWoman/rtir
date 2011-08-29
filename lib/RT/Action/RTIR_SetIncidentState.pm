@@ -67,9 +67,6 @@ sub GetState {
     return $state{ $self->TicketObj->Status };
 }
 
-eval "require RT::Action::RTIR_SetIncidentState_Vendor";
-die $@ if ($@ && $@ !~ qr{^Can't locate RT/Action/RTIR_SetIncidentState_Vendor.pm});
-eval "require RT::Action::RTIR_SetIncidentState_Local";
-die $@ if ($@ && $@ !~ qr{^Can't locate RT/Action/RTIR_SetIncidentState_Local.pm});
+RT::IR->ImportOverlays;
 
 1;

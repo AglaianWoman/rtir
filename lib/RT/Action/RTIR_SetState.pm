@@ -45,9 +45,6 @@ sub Commit {
 
 sub GetState { return '' }
 
-eval "require RT::Action::RTIR_SetState_Vendor";
-die $@ if ($@ && $@ !~ qr{^Can't locate RT/Action/RTIR_SetState_Vendor.pm});
-eval "require RT::Action::RTIR_SetState_Local";
-die $@ if ($@ && $@ !~ qr{^Can't locate RT/Action/RTIR_SetState_Local.pm});
+RT::IR->ImportOverlays;
 
 1;

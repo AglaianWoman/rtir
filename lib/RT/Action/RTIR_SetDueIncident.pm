@@ -117,4 +117,6 @@ sub UpdateDue {
 
 # }}}
 
+RT::IR->ImportOverlays;
+
 1;

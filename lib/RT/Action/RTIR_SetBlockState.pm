@@ -119,9 +119,6 @@ sub GetState {
     return '';
 }
 
-eval "require RT::Action::RTIR_SetBlockState_Vendor";
-die $@ if ($@ && $@ !~ qr{^Can't locate RT/Action/RTIR_SetBlockState_Vendor.pm});
-eval "require RT::Action::RTIR_SetBlockState_Local";
-die $@ if ($@ && $@ !~ qr{^Can't locate RT/Action/RTIR_SetBlockState_Local.pm});
+RT::IR->ImportOverlays;
 
 1;

@@ -103,9 +103,6 @@ sub Commit {
 
 # }}}
 
-eval "require RT::Action::RTIR_ChangeChildOwnership_Vendor";
-die $@ if ($@ && $@ !~ qr{^Can't locate RT/Action/RTIR_ChangeChildOwnership_Vendor.pm});
-eval "require RT::Action::RTIR_ChangeChildOwnership_Local";
-die $@ if ($@ && $@ !~ qr{^Can't locate RT/Action/RTIR_ChangeChildOwnership_Local.pm});
+RT::IR->ImportOverlays;
 
 1;

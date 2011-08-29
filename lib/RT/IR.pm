@@ -661,11 +661,19 @@ if ( RT::IR->HasConstituency ) {
     };
 }
 
-#
-eval "require RT::IR_Vendor";
-die $@ if ($@ && $@ !~ qr{^Can't locate RT/IR_Vendor.pm});
-eval "require RT::IR_Local";
-die $@ if ($@ && $@ !~ qr{^Can't locate RT/IR_Local.pm});
+sub ImportOverlays {
+    my $class = shift;
+    my ($package,undef,undef) = caller();
+    $package =~ s|::|/|g;
+    for my $type (qw(Overlay Vendor Local)) {
+        my $filename = $package."_".$type.".pm";
+        eval { require $filename };
+        die $@ if ($@ && $@ !~ qr{^Can't locate $filename});
+    }
+    return;
+}
+
+__PACKAGE__->ImportOverlays();
 
 package RT::ObjectCustomFieldValue;
 
@@ -692,6 +700,5 @@ sub LoadByCols {
 
     return $self->SUPER::LoadByCols( %args, Content => $sIP, LargeContent => $eIP );
 }
-
 
 1;

@@ -95,9 +95,6 @@ sub Commit {
 
 # }}}
 
-eval "require RT::Action::RTIR_OpenParent_Vendor";
-die $@ if ($@ && $@ !~ qr{^Can't locate RT/Action/RTIR_OpenParent_Vendor.pm});
-eval "require RT::Action::RTIR_OpenParent_Local";
-die $@ if ($@ && $@ !~ qr{^Can't locate RT/Action/RTIR_OpenParent_Local.pm});
+RT::IR->ImportOverlays;
 
 1;

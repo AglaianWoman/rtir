@@ -88,4 +88,6 @@ sub AddIP {
     return 1;
 }
 
+RT::IR->ImportOverlays;
+
 1;
