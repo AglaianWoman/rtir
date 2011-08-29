@@ -1,9 +1,9 @@
 package RT::Condition::RTIR_RequireConstituencyGroupChange;
-
 use strict;
 use warnings;
 
 use base 'RT::Condition::RTIR';
+
 use RT::CustomField;
 
 =head2 IsApplicable

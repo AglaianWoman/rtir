@@ -1,5 +1,4 @@
 package RT::Action::RTIR_MergeIPs;
-
 use strict;
 use warnings;
 

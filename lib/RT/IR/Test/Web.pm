@@ -1,5 +1,4 @@
 package RT::IR::Test::Web;
-
 use strict;
 use warnings;
 

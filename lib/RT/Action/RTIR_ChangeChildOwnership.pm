@@ -46,6 +46,8 @@
 #
 package RT::Action::RTIR_ChangeChildOwnership;
 use strict;
+use warnings;
+
 use base 'RT::Action::RTIR';
 
 =head2 Prepare

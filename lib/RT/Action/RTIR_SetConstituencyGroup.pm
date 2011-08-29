@@ -1,5 +1,4 @@
 package RT::Action::RTIR_SetConstituencyGroup;
-
 use strict;
 use warnings;
 

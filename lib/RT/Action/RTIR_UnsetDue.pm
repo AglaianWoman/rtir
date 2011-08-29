@@ -45,8 +45,9 @@
 # }}} END BPS TAGGED BLOCK
 #
 package RT::Action::RTIR_UnsetDue;
-
 use strict;
+use warnings;
+
 use base 'RT::Action::RTIR';
 
 =head2 Prepare

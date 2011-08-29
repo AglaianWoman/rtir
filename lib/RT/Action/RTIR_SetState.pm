@@ -1,5 +1,4 @@
 package RT::Action::RTIR_SetState;
-
 use strict;
 use warnings;
 

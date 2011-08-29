@@ -45,9 +45,8 @@
 # }}} END BPS TAGGED BLOCK
 #
 package RT::Action::RTIR_SetDueCorrespond;
-
-
 use strict;
+use warnings;
 
 use base 'RT::Action::RTIR';
 

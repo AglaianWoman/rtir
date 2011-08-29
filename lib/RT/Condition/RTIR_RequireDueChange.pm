@@ -47,9 +47,9 @@
 
 
 package RT::Condition::RTIR_RequireDueChange;
-
-
 use strict;
+use warnings;
+
 use base 'RT::Condition::RTIR';
 
 

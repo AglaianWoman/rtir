@@ -45,7 +45,6 @@
 # }}} END BPS TAGGED BLOCK
 #
 package RT::Action::RTIR_SetInvestigationState;
-
 use strict;
 use warnings;
 

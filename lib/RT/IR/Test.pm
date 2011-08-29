@@ -1,10 +1,9 @@
+package RT::IR::Test;
 use strict;
 use warnings;
 
 ### after: use lib qw(@RT_LIB_PATH@);
 use lib qw(/opt/rt3/local/lib /opt/rt3/lib);
-
-package RT::IR::Test;
 
 BEGIN {
     local $@;

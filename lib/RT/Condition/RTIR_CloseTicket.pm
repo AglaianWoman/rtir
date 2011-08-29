@@ -47,9 +47,8 @@
 
 
 package RT::Condition::RTIR_CloseTicket;
-
-
 use strict;
+use warnings;
 
 use base 'RT::Condition::RTIR';
 

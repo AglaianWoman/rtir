@@ -45,7 +45,6 @@
 # }}} END BPS TAGGED BLOCK
 #
 package RT::Action::RTIR_OpenParent;
-
 use strict;
 use warnings;
 

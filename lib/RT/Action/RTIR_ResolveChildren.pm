@@ -46,6 +46,8 @@
 #
 package RT::Action::RTIR_ResolveChildren;
 use strict;
+use warnings;
+
 use base 'RT::Action::RTIR';
 
 use RT::IR::Ticket;

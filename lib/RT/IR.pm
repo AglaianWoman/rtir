@@ -45,7 +45,6 @@
 # }}} END BPS TAGGED BLOCK
 #
 package RT::IR;
-
 use 5.008003;
 use warnings;
 use strict;

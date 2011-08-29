@@ -1,5 +1,4 @@
 package RT::Condition::RTIR_LinkingToIncident;
-
 use strict;
 use warnings;
 

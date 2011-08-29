@@ -47,9 +47,8 @@
 
 
 package RT::Condition::RTIR_StaffResponse;
-
-
 use strict;
+use warnings;
 
 use base 'RT::Condition::RTIR';
 

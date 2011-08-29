@@ -1,10 +1,10 @@
-
-use warnings;
-use strict;
-use RT::IR;
 package RT::Action::RTIR;
+use strict;
+use warnings;
 
 use base 'RT::Action::Generic';
+
+use RT::IR;
 
 sub CreatorCurrentUser {
     my $self = shift;

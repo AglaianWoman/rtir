@@ -45,7 +45,6 @@
 # }}} END BPS TAGGED BLOCK
 
 package RT::Condition::RTIR_CustomerResponse;
-
 use strict;
 use warnings;
 

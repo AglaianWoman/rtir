@@ -1,5 +1,4 @@
 package RT::Condition::RTIR_Merge;
-
 use strict;
 use warnings;
 

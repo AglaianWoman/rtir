@@ -1,5 +1,4 @@
 package RT::Condition::RTIR_RequireConstituencyChange;
-
 use strict;
 use warnings;
 

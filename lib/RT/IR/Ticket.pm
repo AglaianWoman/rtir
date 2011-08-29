@@ -1,5 +1,4 @@
 package RT::IR::Ticket;
-
 use strict;
 use warnings;
 

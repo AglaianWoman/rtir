@@ -45,8 +45,9 @@
 # }}} END BPS TAGGED BLOCK
 #
 package RT::Action::RTIR_SetIncidentState;
-
 use strict;
+use warnings;
+
 use base 'RT::Action::RTIR_SetState';
 
 =head2 GetState
