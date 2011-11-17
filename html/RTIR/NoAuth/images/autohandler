@@ -15,7 +15,7 @@ if ($file =~ /\.(gif|png|jpe?g)$/i) {
 die "file not found" unless -f $file && -r _;
 
 $r->content_type($type);
-open my $fh, "<$file" or die "couldn't open file: $!";
+open(my $fh, "<", $file) or die "couldn't open file: $!";
 binmode($fh);
 {
     local $/ = \16384;
